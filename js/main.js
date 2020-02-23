@@ -26,20 +26,25 @@ const epochToUtc = (time) => {
   return myDate
 }
 
+const displayTemp = (temp) => {
+
+}
+
 // var dateString = 'Mon Jan 12 00:00:00 GMT 2015';
 // dateString = new Date(dateString).toUTCString();
 // dateString = dateString.split(' ').slice(0, 4).join(' ');
 // console.log(dateString);
 
 const generateHtml = (data) => {
-  const { main, sys, name } = data;
+  const { weather, main, sys, name } = data;
   console.log(data)
   const html = `
   <div class="output-container">
-    <h3>City: ${name}</h3>
-    <p>Temperature: ${main.temp}&#176;C</p>
-    <p>Sunrise: ${epochtoUtc(sys.sunrise)}(Unix Time)</p>
-    <p>Sunset: ${sys.sunset}(Unix Time)</p>
+    <h3>${name}</h3>
+    <p>${weather[0].description}</p>
+    <p>Temperature: ${main.temp.toFixed(1)}&#176;C</p>
+    <p>Sunrise: ${epochToUtc(sys.sunrise)}</p>
+    <p>Sunset: ${epochToUtc(sys.sunset)}</p>
   </div>
   `
   const outputDiv = document.getElementById('output')
