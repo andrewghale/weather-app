@@ -7,7 +7,7 @@ search.addEventListener('click', e => {
 })
 
 
-const getData = (input) => {
+const getData = async (input) => {
   const apiData = {
     url: 'http://api.openweathermap.org/data/2.5/weather?q=',
     city: input,
@@ -16,10 +16,20 @@ const getData = (input) => {
   }
   const {url, city, units, apiKey} = apiData
   const apiUrl = `${url}${city}${units}${apiKey}`
-  fetch(apiUrl)
+  await fetch(apiUrl)
     .then( (data) => data.json())
     .then( (data) => generateHtml(data) )
 }
+
+const epochToUtc = (time) => {
+  let myDate = new Date( time * 1000).toTimeString().slice(0, 8)
+  return myDate
+}
+
+// var dateString = 'Mon Jan 12 00:00:00 GMT 2015';
+// dateString = new Date(dateString).toUTCString();
+// dateString = dateString.split(' ').slice(0, 4).join(' ');
+// console.log(dateString);
 
 const generateHtml = (data) => {
   const { main, sys, name } = data;
@@ -28,7 +38,7 @@ const generateHtml = (data) => {
   <div class="output-container">
     <h3>City: ${name}</h3>
     <p>Temperature: ${main.temp}&#176;C</p>
-    <p>Sunrise: ${sys.sunrise}(Unix Time)</p>
+    <p>Sunrise: ${epochtoUtc(sys.sunrise)}(Unix Time)</p>
     <p>Sunset: ${sys.sunset}(Unix Time)</p>
   </div>
   `
