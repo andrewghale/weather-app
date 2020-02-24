@@ -110,9 +110,22 @@ const findMatches = (wordToMatch, cities) => {
 }
 
 function displayMatches(){
-  // console.log(this.value)
   const matchArray = findMatches(this.value, cities)
   console.log(matchArray)
+  if (matchArray.length == cities.length) {
+    suggestions.innerHTML = ""
+  } else {
+    const html = matchArray.map(place => {
+      const regex = new RegExp(this.value, 'gi')
+      const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+      return `
+        <li>
+          <span class="name">${cityName}</span>
+        </li>
+      `
+    }).join('')
+    suggestions.innerHTML = html
+  }
 }
 
 city.addEventListener('change', displayMatches)
