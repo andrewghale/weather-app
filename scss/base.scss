@@ -15,6 +15,19 @@ body {
   background-size: cover;
 }
 
+input[type="text"] {
+  height: 30px;
+  width: 120px;
+  border: none;
+  padding-left: 0.5rem;
+}
+
+input[type="submit"] {
+  height: 30px;
+  width: 50px;
+  border: none;
+}
+
 ul {
   list-style: none;
   padding: 0;

@@ -12,6 +12,17 @@ body {
   background-image: url("../img/background.jpg");
   background-size: cover; }
 
+input[type="text"] {
+  height: 30px;
+  width: 120px;
+  border: none;
+  padding-left: 0.5rem; }
+
+input[type="submit"] {
+  height: 30px;
+  width: 50px;
+  border: none; }
+
 ul {
   list-style: none;
   padding: 0;
@@ -20,7 +31,7 @@ ul {
 .main-container {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 3rem auto 0 auto;
   align-items: center;
   width: 600px;
   height: 700px;
@@ -31,8 +42,25 @@ ul {
   .form-container .suggestions {
     position: absolute; }
     .form-container .suggestions li {
-      border: 1px solid black;
-      background-color: white; }
+      background: white;
+      list-style: none;
+      border-bottom: 1px solid #d8d8d8;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      text-transform: capitalize; }
+      .form-container .suggestions li:hover {
+        background: #e6e6e6; }
+
+.suggestions li:nth-child(even) {
+  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  background: linear-gradient(to bottom, #ffffff 0%, #efefef 100%); }
+
+.suggestions li:nth-child(odd) {
+  transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  background: linear-gradient(to top, #ffffff 0%, #efefef 100%); }
 
 .hl {
   background-color: yellow; }

@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 3rem auto 0 auto;
   align-items: center;
   width: 600px;
   height: 700px;
@@ -12,12 +12,30 @@
   position: relative;
   .suggestions {
     position: absolute;
-    // display: none;
     li {
-      border: 1px solid black;
-      background-color: white;
+      background: white;
+      list-style: none;
+      border-bottom: 1px solid #d8d8d8;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      text-transform: capitalize;
+      &:hover {
+        background: rgb(230, 230, 230);
+      }
     }
   }
+}
+
+.suggestions li:nth-child(even) {
+  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  background: linear-gradient(to bottom, #ffffff 0%, #efefef 100%);
+}
+.suggestions li:nth-child(odd) {
+  transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  background: linear-gradient(to top, #ffffff 0%, #efefef 100%);
 }
 
 .hl {
