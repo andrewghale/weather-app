@@ -60,16 +60,23 @@ const generateHtml = (data) => {
 
 const generateForecastHtml = (data) => {
   let temps = ''
+  console.log(data.list)
   data.list.forEach((el) => {
     let tempString =
     `<div class="three-hour">
       <div class="time">
-      ${
-        JSON.stringify(epochToTime(el.dt))
-      }
+        <span class="bold">${
+          JSON.stringify(epochToTime(el.dt)).padStart(2, '0')
+        }</span>
+        00
       </div>
       <div class="temp">
-    ${JSON.stringify(Math.round(el.main["temp"]))}&#176;
+      <img src="../img/thermometer.svg" alt="temperature">
+        ${JSON.stringify(Math.round(el.main["temp"]))}&#176;
+      </div>
+      <div class="wind">
+        <img src="../img/wind.svg" alt="wind">
+        ${JSON.stringify(Math.round(el.wind["speed"]))}
       </div>
     </div>`
     temps = temps.concat(tempString)
