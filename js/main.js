@@ -21,18 +21,26 @@ const getForecastData = (input) => {
   const apiData = {
     url: 'http://api.openweathermap.org/data/2.5/forecast?q=',
     city: `${input},UK`,
+    units: '&units=metric',
     apiKey: '&appid=439e8e6881a90ec4a633579b93341e40'
   }
-  const {url, city, apiKey} = apiData
-  const apiUrl = `${url}${city}${apiKey}`
+  const {url, city, units, apiKey} = apiData
+  const apiUrl = `${url}${city}${units}${apiKey}`
   fetch(apiUrl)
     .then( (data) => data.json())
-    .then( (data) => console.log(data) )
+    .then( (data) => generateForecastHtml(data) )
 }
 
 const epochToUtc = (time) => {
   let myDate = new Date( time * 1000).toTimeString().slice(0, 8)
   return myDate
+}
+
+const epochToTime = (time) => {
+  const date = new Date( time * 1000)
+  let hours = date.getHours()
+  console.log(hours)
+  return hours
 }
 
 const generateHtml = (data) => {
@@ -48,6 +56,29 @@ const generateHtml = (data) => {
   `
   const outputDiv = document.getElementById('output')
   outputDiv.innerHTML = html
+}
+
+const generateForecastHtml = (data) => {
+  let temps = ''
+  data.list.forEach((el) => {
+    let tempString =
+    `<div class="three-hour">
+      <div class="time">
+      ${
+        JSON.stringify(epochToTime(el.dt))
+      }
+      </div>
+      <div class="temp">
+    ${JSON.stringify(Math.round(el.main["temp"]))}&#176;
+      </div>
+    </div>`
+    temps = temps.concat(tempString)
+  })
+  const html = `
+    ${temps}
+  `
+  const outputForecastDiv = document.getElementById('output-forecast')
+  outputForecastDiv.innerHTML = html
 }
 
 const cities = [{"city":"Aberdeen"},{"city":"Armagh"},{"city":"Bangor"},{"city":"Bath"},{"city":"Belfast"},{"city":"Birmingham"},{"city":"Bradford"},{"city":"Brighton & Hove"},{"city":"Bristol"},{"city":"Cambridge"},{"city":"Canterbury"},{"city":"Cardiff"},{"city":"Carlisle"},{"city":"Chelmsford"},{"city":"Chester"},{"city":"Chichester"},{"city":"Coventry"},{"city":"Derby"},{"city":"Derry"},{"city":"Dundee"},{"city":"Durham"},{"city":"Edinburgh"},{"city":"Ely"},{"city":"Exeter"},{"city":"Glasgow"},{"city":"Gloucester"},{"city":"Hereford"},{"city":"Inverness"},{"city":"Kingston upon Hull"},{"city":"Lancaster"},{"city":"Leeds"},{"city":"Leicester"},{"city":"Lichfield"},{"city":"Lincoln"},{"city":"Lisburn"},{"city":"Liverpool"},{"city":"London"},{"city":"Manchester"},{"city":"Newcastle upon Tyne"},{"city":"Newport"},{"city":"Newry"},{"city":"Norwich"},{"city":"Nottingham"},{"city":"Oxford"},{"city":"Perth"},{"city":"Peterborough"},{"city":"Plymouth"},{"city":"Portsmouth"},{"city":"Preston"},{"city":"Ripon"},{"city":"St Albans"},{"city":"St Asaph"},{"city":"St Davids"},{"city":"Salford"},{"city":"Salisbury"},{"city":"Sheffield"},{"city":"Southampton"},{"city":"Stirling"},{"city":"Stoke-on-Trent"},{"city":"Sunderland"},{"city":"Swansea"},{"city":"Truro"},{"city":"Wakefield"},{"city":"Wells"},{"city":"Westminster"},{"city":"Winchester"},{"city":"Wolverhampton"},{"city":"Worcester"},{"city":"York"}]
@@ -78,6 +109,7 @@ function displayMatches(){
 }
 
 
+
 //
 // Event Listeners
 //
@@ -85,6 +117,7 @@ function displayMatches(){
 searchInput.addEventListener('click', e => {
   e.preventDefault()
   getData(city.value)
+  getForecastData(city.value)
   city.value = ''
 })
 

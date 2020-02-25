@@ -1,10 +1,12 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  margin: 3rem auto 0 auto;
+  margin: 3rem auto;
+  padding-bottom: 5rem;
   align-items: center;
   width: 600px;
-  height: 700px;
+  min-height: 700px;
+  height: fit-content;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -44,4 +46,37 @@
 
 .hide {
   display: none;
+}
+
+.forecast-container {
+  display: flex;
+  max-width: 100%;
+  overflow-x: scroll;
+  padding-left: 1rem;
+  height: 200px;
+}
+
+.three-hour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+  margin-right: 5px;
+  border-radius: 3px;
+  .time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 40px;
+  }
+  .temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 50%;
+  }
 }
