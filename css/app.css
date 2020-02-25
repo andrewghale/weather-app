@@ -88,10 +88,16 @@ ul {
   margin-bottom: 10px; }
   .three-hour .time {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
     height: 40px; }
+    .three-hour .time img {
+      height: 20px;
+      width: auto;
+      margin-bottom: 5px; }
+    .three-hour .time .thetime {
+      display: flex; }
   .three-hour .temp {
     display: flex;
     justify-content: center;
@@ -114,6 +120,8 @@ ul {
       width: auto; }
 
 .bold {
-  font-weight: bold; }
+  font-weight: bold;
+  margin-right: -4px;
+  margin-top: 10px; }
 
 /*# sourceMappingURL=app.css.map */

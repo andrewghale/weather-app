@@ -66,10 +66,18 @@
   margin-bottom: 10px;
   .time {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
     height: 40px;
+    img {
+      height: 20px;
+      width: auto;
+      margin-bottom: 5px;
+    }
+    .thetime {
+      display: flex;
+    }
   }
   .temp {
     display: flex;
@@ -99,4 +107,6 @@
 
 .bold {
   font-weight: bold;
+  margin-right: -4px;
+  margin-top: 10px;
 }

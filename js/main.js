@@ -64,11 +64,13 @@ const generateForecastHtml = (data) => {
   data.list.forEach((el) => {
     let tempString =
     `<div class="three-hour">
-      <div class="time">
+    <div class="time">
+      <img src="../img/clock.svg" alt="time">
+      <div class="the-time">
         <span class="bold">${
-          JSON.stringify(epochToTime(el.dt)).padStart(2, '0')
-        }</span>
-        00
+          JSON.stringify(epochToTime(el.dt)).padStart(2, '0')}
+        </span>00
+      </div>
       </div>
       <div class="temp">
       <img src="../img/thermometer.svg" alt="temperature">
