@@ -10,10 +10,20 @@ html {
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-family: Source Sans Pro;
   background-image: url("../img/background.jpg");
   background-size: cover;
   background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 input[type="text"] {
@@ -32,5 +42,13 @@ input[type="submit"] {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+}
+
+dd {
+  margin-inline-start: 0;
+}
+
+dl {
   margin: 0;
 }

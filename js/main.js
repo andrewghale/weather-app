@@ -1,3 +1,5 @@
+jQuery(document).ready(function($){
+
 const city = document.getElementById("cityInput")
 const searchInput = document.getElementById("searchInput")
 const suggestions = document.querySelector(".suggestions")
@@ -39,7 +41,7 @@ const epochToUtc = (time) => {
 const epochToTime = (time) => {
   const date = new Date( time * 1000)
   let hours = date.getHours()
-  console.log(hours)
+  // console.log(hours)
   return hours
 }
 
@@ -60,34 +62,51 @@ const generateHtml = (data) => {
 
 const generateForecastHtml = (data) => {
   let temps = ''
-  console.log(data.list)
+  console.log(data)
   data.list.forEach((el) => {
     let tempString =
-    `<div class="three-hour">
-    <div class="time">
-      <img src="../img/clock.svg" alt="time">
-      <div class="the-time">
-        <span class="bold">${
-          JSON.stringify(epochToTime(el.dt)).padStart(2, '0')}
-        </span>00
+    `<li class="three-hour" id="${el.dt}">
+      <div class="card">
+          <div class="time">
+            <span class="bold">${
+              JSON.stringify(epochToTime(el.dt)).padStart(2, '0')}
+            </span>00
+          </div>
+        <div class="temp">
+          ${JSON.stringify(Math.round(el.main["temp"]))}&#176;
+        </div>
+        <div class="wind">
+          <img src="../img/wind.svg" alt="wind">
+          ${JSON.stringify(Math.round(el.wind["speed"]))}
+        </div>
       </div>
+      <div class="card-large">
+        <h3>${capitalizeFirst(el.weather[0].description)}</h3>
+        <dl>
+          <dt>Humidity</dt>
+          <dd>${el.main.humidity}%</dd>
+          <dt>Pressure</dt>
+          <dd>${el.main.pressure}</dd>
+        </dl>
+        <dl>
+          <dt>Feels Like</dt>
+          <dd>${el.main.feels_like}&#176;</dd>
+        </dl>
+        <dl>
+          <dt>Pressure</dt>
+          <dd>${el.main.pressure}</dd>
+        </dl>
       </div>
-      <div class="temp">
-      <img src="../img/thermometer.svg" alt="temperature">
-        ${JSON.stringify(Math.round(el.main["temp"]))}&#176;
-      </div>
-      <div class="wind">
-        <img src="../img/wind.svg" alt="wind">
-        ${JSON.stringify(Math.round(el.wind["speed"]))}
-      </div>
-    </div>`
+    </li>`
     temps = temps.concat(tempString)
   })
+
   const html = `
     ${temps}
   `
   const outputForecastDiv = document.getElementById('output-forecast')
   outputForecastDiv.innerHTML = html
+  // init()
 }
 
 const cities = [{"city":"Aberdeen"},{"city":"Armagh"},{"city":"Bangor"},{"city":"Bath"},{"city":"Belfast"},{"city":"Birmingham"},{"city":"Bradford"},{"city":"Brighton & Hove"},{"city":"Bristol"},{"city":"Cambridge"},{"city":"Canterbury"},{"city":"Cardiff"},{"city":"Carlisle"},{"city":"Chelmsford"},{"city":"Chester"},{"city":"Chichester"},{"city":"Coventry"},{"city":"Derby"},{"city":"Derry"},{"city":"Dundee"},{"city":"Durham"},{"city":"Edinburgh"},{"city":"Ely"},{"city":"Exeter"},{"city":"Glasgow"},{"city":"Gloucester"},{"city":"Hereford"},{"city":"Inverness"},{"city":"Kingston upon Hull"},{"city":"Lancaster"},{"city":"Leeds"},{"city":"Leicester"},{"city":"Lichfield"},{"city":"Lincoln"},{"city":"Lisburn"},{"city":"Liverpool"},{"city":"London"},{"city":"Manchester"},{"city":"Newcastle upon Tyne"},{"city":"Newport"},{"city":"Newry"},{"city":"Norwich"},{"city":"Nottingham"},{"city":"Oxford"},{"city":"Perth"},{"city":"Peterborough"},{"city":"Plymouth"},{"city":"Portsmouth"},{"city":"Preston"},{"city":"Ripon"},{"city":"St Albans"},{"city":"St Asaph"},{"city":"St Davids"},{"city":"Salford"},{"city":"Salisbury"},{"city":"Sheffield"},{"city":"Southampton"},{"city":"Stirling"},{"city":"Stoke-on-Trent"},{"city":"Sunderland"},{"city":"Swansea"},{"city":"Truro"},{"city":"Wakefield"},{"city":"Wells"},{"city":"Westminster"},{"city":"Winchester"},{"city":"Wolverhampton"},{"city":"Worcester"},{"city":"York"}]
@@ -117,18 +136,35 @@ function displayMatches(){
   }
 }
 
+const capitalizeFirst = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+  let allPanels = $('.card-large').hide();
+
+  $('.three-hour').click(function() {
+    let cardLarge = document.querySelector(".card-large")
+    allPanels.hide()
+    $(this)
+      .children(cardLarge)
+      .show()
+  });
 
 
-//
-// Event Listeners
-//
 
-searchInput.addEventListener('click', e => {
-  e.preventDefault()
-  getData(city.value)
-  getForecastData(city.value)
-  city.value = ''
-})
+  //
+  // Event Listeners
+  //
 
-city.addEventListener('change', displayMatches)
+  searchInput.addEventListener('click', e => {
+    e.preventDefault()
+    getData(city.value)
+    getForecastData(city.value)
+    city.value = ''
+  })
+
+  city.addEventListener('change', displayMatches)
+
 city.addEventListener('keyup', displayMatches)
+
+});
