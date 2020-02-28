@@ -10781,7 +10781,9 @@ jQuery(document).ready(function($) {
           </div>
           </div>
           <div class="temp">
-          <img src="http://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png">
+          <div class="icon-container">
+            <img src="http://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png">
+          </div>
           <div class="temp-number">
             ${JSON.stringify(Math.round(main["temp"]))}&#176;
           </div>

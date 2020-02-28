@@ -136,9 +136,14 @@ dl {
         padding: 0.5rem 0;
         border-radius: 10px;
         font-size: 1.8rem; }
-        .forecast-container .three-hour .card .temp img {
-          height: 45px;
-          width: auto; }
+        .forecast-container .three-hour .card .temp .icon-container {
+          height: 50px;
+          width: 50px;
+          background: #d8d8d8;
+          border-radius: 50%; }
+          .forecast-container .three-hour .card .temp .icon-container img {
+            width: auto;
+            height: 100%; }
       .forecast-container .three-hour .card .wind {
         display: flex;
         flex-direction: column;

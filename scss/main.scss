@@ -103,9 +103,15 @@
         padding: 0.5rem 0;
         border-radius: 10px;
         font-size: 1.8rem;
-        img {
-          height: 45px;
-          width: auto;
+        .icon-container {
+          height: 50px;
+          width: 50px;
+          background: rgba(216, 216, 216, 1);
+          border-radius: 50%;
+          img {
+            width: auto;
+            height: 100%;
+          }
         }
       }
       .wind {
