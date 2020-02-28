@@ -101,7 +101,6 @@ const generateForecastHtml = (data) => {
     </li>`
     temps = temps.concat(tempString)
   })
-
   const html = `
     ${temps}
   `
