@@ -10761,11 +10761,16 @@ jQuery(document).ready(function($) {
 
   const generateForecastHtml = (data) => {
     let temps = ''
+    // console.log(data.list)
     data.list.forEach((el) => {
       const { dt, main, rain, wind } = el
       let tempString =
-      `<li class="three-hour
-        ${(epochToTime(dt)) === 00 ? "indent" : "none"}" id="${dt}">
+      `<li
+        class="three-hour
+          ${epochToTime(dt) === 00 ? "indent rounded-left" : "none"}
+          ${epochToTime(dt) === 21 ? "rounded-right" : "none"}
+        "
+        id="${dt}">
         <div class="card">
         <div class="time">
           <div class="day">${numberToDay(dotw(dt))}</div>
@@ -10776,7 +10781,10 @@ jQuery(document).ready(function($) {
           </div>
           </div>
           <div class="temp">
+          <img src="http://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png">
+          <div class="temp-number">
             ${JSON.stringify(Math.round(main["temp"]))}&#176;
+          </div>
           </div>
           <div class="wind">
             <img src="../img/wind.svg" alt="wind">
@@ -10852,12 +10860,11 @@ jQuery(document).ready(function($) {
     });
   }
 
+  init()
 
-
-    //
-    // Event Listeners
-    //
-
+  //
+  // Event Listeners
+  //
   searchInput.addEventListener('click', e => {
     e.preventDefault()
     getData(city.value)

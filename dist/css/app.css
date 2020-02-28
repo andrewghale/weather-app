@@ -95,87 +95,87 @@ dl {
   max-width: 100%;
   overflow-x: scroll;
   height: 300px; }
-
-.three-hour {
-  display: flex;
-  align-items: flex-start;
-  cursor: pointer;
-  position: relative;
-  background-color: #fafafa;
-  margin-bottom: 10px;
-  border-right: 1px solid lightgrey; }
-  .three-hour:hover:before {
-    width: 100%; }
-  .three-hour:before {
-    position: absolute;
-    content: "";
-    height: 3px;
-    width: 0%;
-    background-color: orange;
-    top: 0;
-    left: 0;
-    transition: width 0.1s ease-out; }
-  .three-hour .card {
-    height: 100%;
-    width: 70px;
-    min-width: 70px;
+  .forecast-container .three-hour {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0; }
-    .three-hour .card .time {
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+    background-color: #fafafa;
+    margin-bottom: 10px;
+    border-right: 1px solid lightgrey; }
+    .forecast-container .three-hour:hover:before {
+      width: 100%; }
+    .forecast-container .three-hour:before {
+      position: absolute;
+      content: "";
+      height: 3px;
+      width: 0%;
+      background-color: orange;
+      top: 0;
+      left: 0;
+      transition: width 0.1s ease-out; }
+    .forecast-container .three-hour .card {
+      height: 100%;
+      width: 70px;
+      min-width: 70px;
       display: flex;
       flex-direction: column;
-      align-items: center; }
-    .three-hour .card .temp {
-      display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      height: 40px;
-      padding: 0.5rem 0;
-      border-radius: 10px;
-      font-size: 1.8rem; }
-      .three-hour .card .temp img {
-        height: 20px;
-        width: auto; }
-    .three-hour .card .wind {
+      padding: 1rem 0; }
+      .forecast-container .three-hour .card .time {
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+      .forecast-container .three-hour .card .temp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        padding: 0.5rem 0;
+        border-radius: 10px;
+        font-size: 1.8rem; }
+        .forecast-container .three-hour .card .temp img {
+          height: 45px;
+          width: auto; }
+      .forecast-container .three-hour .card .wind {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px; }
+        .forecast-container .three-hour .card .wind img {
+          height: 20px;
+          width: auto; }
+    .forecast-container .three-hour .card-large {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 40px;
-      width: 40px; }
-      .three-hour .card .wind img {
-        height: 20px;
-        width: auto; }
-  .three-hour .card-large {
-    display: flex;
-    flex-direction: column;
-    min-width: 240px;
-    height: 100%;
-    padding: 0.8rem 1.5rem;
-    background: #f0f0f0 100%; }
-    .three-hour .card-large h3 {
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 2rem; }
-    .three-hour .card-large dl {
-      display: flex;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #969696;
-      padding-bottom: 1rem;
-      margin-top: 1rem; }
-      .three-hour .card-large dl dt {
-        margin-right: 0.4rem;
-        width: fit-content;
-        color: #323232; }
-      .three-hour .card-large dl dd {
-        flex-grow: 1;
-        min-width: 50%;
-        font-weight: bold; }
-    .three-hour .card-large dl:last-of-type {
-      border-bottom: none; }
+      min-width: 240px;
+      height: 100%;
+      padding: 0.8rem 1.5rem;
+      background: #f0f0f0 100%; }
+      .forecast-container .three-hour .card-large h3 {
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 2rem; }
+      .forecast-container .three-hour .card-large dl {
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: 1px solid #969696;
+        padding-bottom: 1rem;
+        margin-top: 1rem; }
+        .forecast-container .three-hour .card-large dl dt {
+          margin-right: 0.4rem;
+          width: fit-content;
+          color: #323232; }
+        .forecast-container .three-hour .card-large dl dd {
+          flex-grow: 1;
+          min-width: 50%;
+          font-weight: bold; }
+      .forecast-container .three-hour .card-large dl:last-of-type {
+        border-bottom: none; }
 
 .bold {
   font-weight: bold; }
@@ -187,5 +187,13 @@ dl {
 
 .indent {
   margin-left: 1rem; }
+
+.rounded-left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+.rounded-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; }
 
 /*# sourceMappingURL=app.css.map */
