@@ -157,30 +157,37 @@ dl {
     .forecast-container .three-hour .card-large {
       display: flex;
       flex-direction: column;
-      min-width: 240px;
+      width: 0px;
       height: 100%;
-      padding: 0.8rem 1.5rem;
-      background: #f0f0f0 100%; }
-      .forecast-container .three-hour .card-large h3 {
-        font-weight: 700;
-        font-size: 1.3rem;
-        margin-bottom: 2rem; }
-      .forecast-container .three-hour .card-large dl {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: 1px solid #969696;
-        padding-bottom: 1rem;
-        margin-top: 1rem; }
-        .forecast-container .three-hour .card-large dl dt {
-          margin-right: 0.4rem;
-          width: fit-content;
-          color: #323232; }
-        .forecast-container .three-hour .card-large dl dd {
-          flex-grow: 1;
-          min-width: 50%;
-          font-weight: bold; }
-      .forecast-container .three-hour .card-large dl:last-of-type {
-        border-bottom: none; }
+      background: #f0f0f0 100%;
+      overflow: hidden;
+      transition: all 0.2s ease; }
+      .forecast-container .three-hour .card-large.show-card-large {
+        width: 240px;
+        transition: all 0.2s ease; }
+      .forecast-container .three-hour .card-large .card-large-inner {
+        padding: 0.8rem 1.5rem;
+        width: 240px; }
+        .forecast-container .three-hour .card-large .card-large-inner h3 {
+          font-weight: 700;
+          font-size: 1.3rem;
+          margin-bottom: 2rem; }
+        .forecast-container .three-hour .card-large .card-large-inner dl {
+          display: flex;
+          flex-wrap: wrap;
+          border-bottom: 1px solid #969696;
+          padding-bottom: 1rem;
+          margin-top: 1rem; }
+          .forecast-container .three-hour .card-large .card-large-inner dl dt {
+            margin-right: 0.4rem;
+            width: fit-content;
+            color: #323232; }
+          .forecast-container .three-hour .card-large .card-large-inner dl dd {
+            flex-grow: 1;
+            min-width: 50%;
+            font-weight: bold; }
+        .forecast-container .three-hour .card-large .card-large-inner dl:last-of-type {
+          border-bottom: none; }
 
 .bold {
   font-weight: bold; }
@@ -200,5 +207,8 @@ dl {
 .rounded-right {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px; }
+
+.hide-card {
+  display: none; }
 
 /*# sourceMappingURL=app.css.map */

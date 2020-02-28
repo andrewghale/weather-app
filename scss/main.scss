@@ -130,34 +130,46 @@
     .card-large {
       display: flex;
       flex-direction: column;
-      min-width: 240px;
+      // min-width: 240px;
+      // width: 240px;
+      width: 0px;
       height: 100%;
-      padding: 0.8rem 1.5rem;
+      // padding: 0.8rem 1.5rem;
       background: rgb(240, 240, 240) 100%;
-      h3 {
-        font-weight: 700;
-        font-size: 1.3rem;
-        margin-bottom: 2rem;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      &.show-card-large {
+        width: 240px;
+        transition: all 0.2s ease;
       }
-      dl {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: 1px solid rgb(150, 150, 150);
-        padding-bottom: 1rem;
-        margin-top: 1rem;
-        dt {
-          margin-right: 0.4rem;
-          width: fit-content;
-          color: rgb(50, 50, 50);
+      .card-large-inner {
+        padding: 0.8rem 1.5rem;
+        width: 240px;
+        h3 {
+          font-weight: 700;
+          font-size: 1.3rem;
+          margin-bottom: 2rem;
         }
-        dd {
-          flex-grow: 1;
-          min-width: 50%;
-          font-weight: bold;
+        dl {
+          display: flex;
+          flex-wrap: wrap;
+          border-bottom: 1px solid rgb(150, 150, 150);
+          padding-bottom: 1rem;
+          margin-top: 1rem;
+          dt {
+            margin-right: 0.4rem;
+            width: fit-content;
+            color: rgb(50, 50, 50);
+          }
+          dd {
+            flex-grow: 1;
+            min-width: 50%;
+            font-weight: bold;
+          }
         }
-      }
-      dl:last-of-type {
-        border-bottom: none;
+        dl:last-of-type {
+          border-bottom: none;
+        }
       }
     }
   }
@@ -185,3 +197,11 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+.hide-card {
+  display: none;
+}
+
+// .show-card-large {
+//   display: flex;
+// }

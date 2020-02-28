@@ -3,6 +3,7 @@ jQuery(document).ready(function($) {
   const city = document.getElementById("cityInput")
   const searchInput = document.getElementById("searchInput")
   const suggestions = document.querySelector(".suggestions")
+  const iconPath = "http://openweathermap.org/img/wn/"
 
   const getData = async (input) => {
     const apiData = {
@@ -36,11 +37,38 @@ jQuery(document).ready(function($) {
     let myDate = new Date( time * 1000).toTimeString().slice(0, 8)
     return myDate
   }
-
   const epochToTime = (time) => {
     const date = new Date( time * 1000)
     let hours = date.getHours()
     return hours
+  }
+  const dotw = (timestamp) => {
+    const date = new Date( timestamp * 1000)
+    let hours = date.getDay().toString()
+    return hours
+  }
+  const numberToDay = (number) => {
+    if (number == 0) {
+      return "Sun"
+    }
+    if (number == 1) {
+      return "Mon"
+    }
+    if (number == 2) {
+      return "Tue"
+    }
+    if (number == 3) {
+      return "Wed"
+    }
+    if (number == 4) {
+      return "Thu"
+    }
+    if (number == 5) {
+      return "Fri"
+    }
+    if (number == 6) {
+      return "Sat"
+    }
   }
 
   const generateHtml = (data) => {
@@ -59,39 +87,8 @@ jQuery(document).ready(function($) {
     init()
   }
 
-  const dotw = (timestamp) => {
-    const date = new Date( timestamp * 1000)
-    let hours = date.getDay().toString()
-    return hours
-  }
-
-  const numberToDay = (number) => {
-    if (number == 5) {
-      return "Fri"
-    }
-    if (number == 6) {
-      return "Sat"
-    }
-    if (number == 0) {
-      return "Sun"
-    }
-    if (number == 1) {
-      return "Mon"
-    }
-    if (number == 2) {
-      return "Tue"
-    }
-    if (number == 3) {
-      return "Wed"
-    }
-    if (number == 4) {
-      return "Thu"
-    }
-  }
-
   const generateForecastHtml = (data) => {
     let temps = ''
-    // console.log(data.list)
     data.list.forEach((el) => {
       const { dt, main, rain, wind } = el
       let tempString =
@@ -112,7 +109,7 @@ jQuery(document).ready(function($) {
           </div>
           <div class="temp">
           <div class="icon-container">
-            <img src="http://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png">
+            <img src="${iconPath}${el.weather[0].icon}@2x.png">
           </div>
           <div class="temp-number">
             ${JSON.stringify(Math.round(main["temp"]))}&#176;
@@ -124,21 +121,23 @@ jQuery(document).ready(function($) {
           </div>
         </div>
         <div class="card-large">
-          <h3>${capitalizeFirst(el.weather[0].description)}</h3>
-          <dl>
-            <dt>Humidity</dt>
-            <dd>${main.humidity}<span class="mm">%</span></dd>
-            <dt>Pressure</dt>
-            <dd>${main.pressure}<span class="mm">hPa</span></dd>
-          </dl>
-          <dl>
-            <dt>Feels Like</dt>
-            <dd>${main.feels_like}&#176;</dd>
-          </dl>
-          <dl>
-            <dt>Rain</dt>
-            <dd>${ rain ? rain["3h"] : "n/a" }<span class="mm">mm</span></dd>
-          </dl>
+          <div class="card-large-inner">
+            <h3>${capitalizeFirst(el.weather[0].description)}</h3>
+            <dl>
+              <dt>Humidity</dt>
+              <dd>${main.humidity}<span class="mm">%</span></dd>
+              <dt>Pressure</dt>
+              <dd>${main.pressure}<span class="mm">hPa</span></dd>
+            </dl>
+            <dl>
+              <dt>Feels Like</dt>
+              <dd>${main.feels_like}&#176;</dd>
+            </dl>
+            <dl>
+              <dt>Rain</dt>
+              <dd>${ rain ? rain["3h"] : "n/a" }<span class="mm">mm</span></dd>
+            </dl>
+          </div>
         </div>
       </li>`
       temps = temps.concat(tempString)
@@ -180,15 +179,13 @@ jQuery(document).ready(function($) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
-
   const init = () => {
-    let allPanels = $('.card-large').hide();
     $('.three-hour').click(function() {
-      let cardLarge = document.querySelector(".card-large")
-      allPanels.hide()
+      let cardLarge = $('.card-large')
+      console.log($(this).find(cardLarge))
       $(this)
-        .children(cardLarge)
-        .show()
+        .find(cardLarge)
+        .toggleClass('show-card-large')
     });
   }
 
@@ -205,7 +202,5 @@ jQuery(document).ready(function($) {
   })
 
   city.addEventListener('change', displayMatches)
-
   city.addEventListener('keyup', displayMatches)
-
 });
