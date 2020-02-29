@@ -192,30 +192,30 @@ jQuery(document).ready(function($) {
       init()
     }
 
-    const findMatches = (wordToMatch, cities) => {
-      return cities.filter(place => {
-        const regex = new RegExp(wordToMatch, 'gi')
-        return place.city.match(regex)
-      })
-    }
+    // const findMatches = (wordToMatch, cities) => {
+    //   return cities.filter(place => {
+    //     const regex = new RegExp(wordToMatch, 'gi')
+    //     return place.city.match(regex)
+    //   })
+    // }
 
-    function displayMatches(){
-      const matchArray = findMatches(this.value, cities)
-      if (matchArray.length == cities.length) {
-        suggestions.innerHTML = ""
-      } else {
-        const html = matchArray.map(place => {
-          const regex = new RegExp(this.value, 'gi')
-          const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
-          return `
-          <li>
-          <span class="name">${cityName}</span>
-          </li>
-          `
-        }).join('')
-        suggestions.innerHTML = html
-      }
-    }
+    // function displayMatches(){
+    //   const matchArray = findMatches(this.value, cities)
+    //   if (matchArray.length == cities.length) {
+    //     suggestions.innerHTML = ""
+    //   } else {
+    //     const html = matchArray.map(place => {
+    //       const regex = new RegExp(this.value, 'gi')
+    //       const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+    //       return `
+    //       <li>
+    //       <span class="name">${cityName}</span>
+    //       </li>
+    //       `
+    //     }).join('')
+    //     suggestions.innerHTML = html
+    //   }
+    // }
 
 
     const init = () => {
@@ -240,6 +240,6 @@ jQuery(document).ready(function($) {
 
   })
 
-  city.addEventListener('change', displayMatches)
-  city.addEventListener('keyup', displayMatches)
+  // city.addEventListener('change', displayMatches)
+  // city.addEventListener('keyup', displayMatches)
 });
