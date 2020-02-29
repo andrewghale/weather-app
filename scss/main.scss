@@ -4,8 +4,8 @@
   margin: 2rem auto;
   padding-bottom: 5rem;
   max-width: 1000px;
-  width: 80vw;
-  min-height: 700px;
+  width: 90vw;
+  min-height: 600px;
   height: fit-content;
   background-color: rgba(255, 255, 255, 0.4);
 }
@@ -75,17 +75,43 @@
   background-color: white;
   border-radius: 5px;
   padding: 1rem;
-  margin: 1rem;
-  width: 50%;
+  margin: 0 1rem;
+  width: auto;
   .title {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     h1 {
       font-size: 3rem;
     }
+    .icon-container {
+      height: 50px;
+      width: 50px;
+      background: $icon-background;
+      border-radius: 50%;
+      margin-right: 0.6rem;
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
     p {
-      margin-left: 1rem;
+      border: 2px solid black;
+      border-radius: 5px;
+      padding: 0 0.5rem;
       font-size: 2.5rem;
+    }
+    .temp-container {
+      display: flex;
+      margin: 0 1rem 0 auto;
+      .temp-icon-container {
+        height: 50px;
+        width: 50px;
+        margin-right: 0.6rem;
+        img {
+          height: 100%;
+          width: auto;
+        }
+      }
     }
   }
   .desc {
@@ -263,4 +289,21 @@
 
 .hide-card {
   display: none;
+}
+
+.color25 {
+  color: red;
+}
+
+.hot {
+  color: red;
+}
+.warm {
+  color: orange;
+}
+.mild {
+  color: green;
+}
+.cold {
+  color: lightskyblue;
 }

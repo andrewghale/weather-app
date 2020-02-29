@@ -10747,15 +10747,43 @@ jQuery(document).ready(function($) {
   }
 
 
+
+  // Idea is to get temperature as a number, convert to rgb number range which would make hot temperatures color = red and cold temperatures color = blue
+
+  // const tempColorChange = (number) => {
+  //   // number = -number
+  //   const tempColor = document.getElementById("temp-color")
+  //   tempColor.style.color=`rgb(255, ${number*8}, 0)`;
+  // }
+
+
+  const generateTempClass = (number) => {
+    if (number <= 5) {
+      return "cold"
+    } else if (number > 5 && number < 15) {
+      return "mild"
+    } else if (number >= 15 && number < 25) {
+      return "warm"
+    } else {
+      return "hot"
+    }
+  }
+
   const generateHtml = (data) => {
     const { weather, main, sys, name, timezone } = data;
     console.log(data)
-    console.log(sys.sunrise)
-    console.log(sys.sunrise - timezone)
     const html = `
     <div class="title">
       <h1>${name}, ${sys.country}</h1>
-      <p>${main.temp.toFixed(1)}&#176;C</p>
+      <div class="icon-container">
+        <img src="${iconPath}${weather[0].icon}@2x.png">
+      </div>
+      <div class="temp-container">
+        <div class="temp-icon-container">
+          <img src="../img/thermometer.svg">
+        </div>
+        <p id="temp-color" class="${generateTempClass(main.temp)}">${main.temp.toFixed(1)}&#176;C</p>
+      </div>
     </div>
     <p class="desc">${capitalizeFirst(weather[0].description)}</p>
     <div class="sun-container">
@@ -10777,6 +10805,7 @@ jQuery(document).ready(function($) {
     `
     const outputDiv = document.getElementById('output')
     outputDiv.innerHTML = html
+    console.log(Math.round(main.temp))
     init()
   }
 
@@ -10860,15 +10889,17 @@ jQuery(document).ready(function($) {
       }
     }
 
+
     const init = () => {
       $('.three-hour').click(function() {
-      let cardLarge = $('.card-large')
-      $(this)
+        let cardLarge = $('.card-large')
+        $(this)
         .find(cardLarge)
         .toggleClass('show-card-large')
       });
-  }
+    }
   init()
+
 
   //
   // Event Listeners
@@ -10878,6 +10909,7 @@ jQuery(document).ready(function($) {
     getData(city.value)
     getForecastData(city.value)
     city.value = ''
+
   })
 
   city.addEventListener('change', displayMatches)

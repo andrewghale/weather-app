@@ -258,8 +258,8 @@ dl {
   margin: 2rem auto;
   padding-bottom: 5rem;
   max-width: 1000px;
-  width: 80vw;
-  min-height: 700px;
+  width: 90vw;
+  min-height: 600px;
   height: fit-content;
   background-color: rgba(255, 255, 255, 0.4); }
 
@@ -316,16 +316,37 @@ dl {
   background-color: white;
   border-radius: 5px;
   padding: 1rem;
-  margin: 1rem;
-  width: 50%; }
+  margin: 0 1rem;
+  width: auto; }
   .output-container .title {
     display: flex;
-    align-items: baseline; }
+    align-items: center; }
     .output-container .title h1 {
       font-size: 3rem; }
+    .output-container .title .icon-container {
+      height: 50px;
+      width: 50px;
+      background: #d8d8d8;
+      border-radius: 50%;
+      margin-right: 0.6rem; }
+      .output-container .title .icon-container img {
+        height: 100%;
+        width: auto; }
     .output-container .title p {
-      margin-left: 1rem;
+      border: 2px solid black;
+      border-radius: 5px;
+      padding: 0 0.5rem;
       font-size: 2.5rem; }
+    .output-container .title .temp-container {
+      display: flex;
+      margin: 0 1rem 0 auto; }
+      .output-container .title .temp-container .temp-icon-container {
+        height: 50px;
+        width: 50px;
+        margin-right: 0.6rem; }
+        .output-container .title .temp-container .temp-icon-container img {
+          height: 100%;
+          width: auto; }
   .output-container .desc {
     font-size: 2rem; }
   .output-container .sun-container {
@@ -469,5 +490,20 @@ dl {
 
 .hide-card {
   display: none; }
+
+.color25 {
+  color: red; }
+
+.hot {
+  color: red; }
+
+.warm {
+  color: orange; }
+
+.mild {
+  color: green; }
+
+.cold {
+  color: lightskyblue; }
 
 /*# sourceMappingURL=app.css.map */
