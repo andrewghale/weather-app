@@ -8,20 +8,22 @@
   </head>
   <body>
     <div class="main-container">
-      <h1>UK Weather</h1>
-      <form class="form-container">
-        <label class="label" for="city">
-          <input type="text" class="city" id="cityInput" />
-          <ul class="suggestions"></ul>
-          <input type="submit" value="Search" class="search" id="searchInput" />
-        </label>
-      </form>
+      <div class="top-container">
+        <h2>World Weather</h2>
+        <form class="form-container">
+          <label class="label" for="city">
+            <input type="text" class="city" id="cityInput" />
+            <ul class="suggestions"></ul>
+            <input type="submit" value="Search" class="search" id="searchInput" />
+          </label>
+        </form>
+      </div>
       <div class="output-container" id="output">
         <h1>Bristol</h1>
         <p>Description</p>
         <p>Temperature: 13&#176;C</p>
       </div>
-      <ul class="forecast-container" id="output-forecast">
+      <ul class="forecast-container your-class" id="output-forecast">
         <li class="three-hour">
         <div class="card">
           <div class="time">
