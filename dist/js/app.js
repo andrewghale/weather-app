@@ -10782,17 +10782,18 @@ jQuery(document).ready(function($) {
     console.log(data)
     const html = `
     <div class="title">
-      <h1>${name}, ${sys.country}</h1>
+      <div class="city">
+        <h1>${name}, ${sys.country}</h1>
         <img src="https://www.countryflags.io/${sys.country}/shiny/64.png" alt="${sys.country}">
+      </div>
       <div class="temp-container">
         <div class="temp-icon-container">
           <img src="../img/thermometer.svg">
         </div>
         <p id="temp-color" class="${generateTempClass(main.temp)}">${main.temp.toFixed(1)}&#176;C</p>
       </div>
-    </div>
-    <p class="desc">${capitalizeFirst(weather[0].description)}</p>
-    <div class="sun-container">
+      <p class="desc">${capitalizeFirst(weather[0].description)}</p>
+      <div class="sun-container">
       <div class="icon-container">
         <img src="../img/dawn.svg">
       </div>
@@ -10807,6 +10808,10 @@ jQuery(document).ready(function($) {
         <p>${epochToUtc(sys.sunset + timezone)}</p>
         <p>GMT${Math.sign(timezone) === 1 ? "+" : ""}${timezone/3600 === 0 ? "" : timezone/3600}</p>
       </div>
+    </div>
+    </div>
+    <div class="map-container">
+      <div id="map"></div>
     </div>
     `
     const outputDiv = document.getElementById('output')
@@ -10907,6 +10912,10 @@ jQuery(document).ready(function($) {
       });
     }
   init()
+
+
+
+
 
 
   //

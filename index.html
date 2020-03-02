@@ -20,34 +20,33 @@
       </div>
       <div class="output-container" id="output">
         <div class="title">
-          <h1>Bristol, GB</h1>
-          <div class="icon-container">
-            <img src="http://openweathermap.org/img/wn/03d@2x.png">
+          <div class="city">
+            <h1>Bristol, GB</h1>
+            <img src="https://www.countryflags.io/GB/shiny/64.png" alt="GB">
           </div>
           <div class="temp-container">
-            <div class="temp-icon-container">
-              <img src="../img/thermometer.svg">
-            </div>
             <p id="temp-color" class="cold">7&#176;C</p>
           </div>
-          <img src="https://www.countryflags.io/GB/shiny/64.png" alt="GB">
+          <p class="desc">Scattered clouds</p>
+          <div class="sun-container">
+            <div class="icon-container">
+              <img src="../img/dawn.svg">
+            </div>
+            <div class="sun-time">
+              <p>06:52:49</p>
+              <p>GMT</p>
+            </div>
+            <div class="icon-container">
+              <img src="../img/sunset.svg">
+            </div>
+            <div class="sun-time">
+              <p>17:52:58</p>
+              <p>GMT</p>
+            </div>
+          </div>
         </div>
-        <p class="desc">Scattered clouds</p>
-        <div class="sun-container">
-          <div class="icon-container">
-            <img src="../img/dawn.svg">
-          </div>
-          <div class="sun-time">
-            <p>06:52:49</p>
-            <p>GMT</p>
-          </div>
-          <div class="icon-container">
-            <img src="../img/sunset.svg">
-          </div>
-          <div class="sun-time">
-            <p>17:52:58</p>
-            <p>GMT</p>
-          </div>
+        <div class="map-container">
+          <div id="map"></div>
         </div>
       </div>
       <ul class="forecast-container" id="output-forecast">
@@ -326,6 +325,25 @@
         </li>
       </div>
     </div>
+    <script>
+      function initMap() {
+          let bristol = {lat: 51.46, lng: -2.6};
+          const map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 7,
+              center: bristol,
+              disableDefaultUI: true,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+          const marker = new google.maps.Marker({
+              position: bristol,
+              map: map,
+              title: 'abuja_location'
+          });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_hBW136GdqB4oxn7VcdyHUQ_tSAHXibE&callback=initMap"
+    async defer>
+    </script>
     <script src="./dist/js/app.js"></script>
   </body>
 </html>
