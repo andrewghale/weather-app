@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   margin: 1rem;
-  background-color: white;
+  background-color: $white;
   border-radius: 5px;
   padding: 1rem;
   h2 {
@@ -22,6 +22,7 @@
   }
   .search {
     cursor: pointer;
+    color: $white;
   }
 }
 
@@ -95,15 +96,15 @@
         width: auto;
       }
     }
-    p {
-      border: 2px solid black;
-      border-radius: 5px;
-      padding: 0 0.5rem;
-      font-size: 2.5rem;
-    }
     .temp-container {
       display: flex;
       margin: 0 1rem 0 auto;
+      p {
+        color: $white;
+        border-radius: 5px;
+        padding: 0 0.5rem;
+        font-size: 2.5rem;
+      }
       .temp-icon-container {
         height: 50px;
         width: 50px;
@@ -275,6 +276,7 @@
   color: grey;
 }
 
+// Forecast
 .indent {
   margin-left: 1rem;
 }
@@ -288,23 +290,31 @@
   border-bottom-right-radius: 5px;
 }
 
-.hide-card {
-  display: none;
+// Temperature classes
+.frigid {
+  background-color: rgb(92, 160, 180);
 }
-
-.color25 {
-  color: red;
+.freezing {
+  background-color: rgb(131, 194, 213);
 }
-
-.hot {
-  color: red;
-}
-.warm {
-  color: orange;
-}
-.mild {
-  color: green;
+.very-cold {
+  background-color: rgb(103, 149, 104);
 }
 .cold {
-  color: lightskyblue;
+  background-color: rgb(116, 168, 119);
+}
+.cool {
+  background-color: rgb(141, 191, 113);
+}
+.comfortable {
+  background-color: rgb(233, 204, 119);
+}
+.warm {
+  background-color: rgb(199, 117, 96);
+}
+.hot {
+  background-color: rgb(176, 91, 90);
+}
+.sweltering {
+  background-color: rgb(152, 75, 68);
 }

@@ -10745,10 +10745,29 @@ jQuery(document).ready(function($) {
       return "Sat"
     }
   }
+  const generateTempClass = (number) => {
+    if (number < -9) {
+      return "frigid"
+    } else if (number >= -9 && number < 0) {
+      return "freezing"
+    } else if (number >= 0 && number < 7) {
+      return "very cold"
+    } else if (number >= 7 && number < 13) {
+      return "cold"
+    } else if (number >= 13 && number < 18) {
+      return "cool"
+    } else if (number >= 18 && number < 24) {
+      return "comfortable"
+    } else if (number >= 24 && number < 29) {
+      return "warm"
+    } else if (number >= 29 && number < 35) {
+      return "hot"
+    } else if (number > 35) {
+      return "sweltering"
+    }
+  }
 
-
-
-  // Idea is to get temperature as a number, convert to rgb number range which would make hot temperatures color = red and cold temperatures color = blue
+    // Idea is to get temperature as a number, convert to rgb number range which would make hot temperatures color = red and cold temperatures color = blue
 
   // const tempColorChange = (number) => {
   //   // number = -number
@@ -10757,17 +10776,6 @@ jQuery(document).ready(function($) {
   // }
 
 
-  const generateTempClass = (number) => {
-    if (number <= 5) {
-      return "cold"
-    } else if (number > 5 && number < 15) {
-      return "mild"
-    } else if (number >= 15 && number < 25) {
-      return "warm"
-    } else {
-      return "hot"
-    }
-  }
 
   const generateHtml = (data) => {
     const { weather, main, sys, name, timezone } = data;
@@ -10775,9 +10783,7 @@ jQuery(document).ready(function($) {
     const html = `
     <div class="title">
       <h1>${name}, ${sys.country}</h1>
-      <div class="icon-container">
-        <img src="${iconPath}${weather[0].icon}@2x.png">
-      </div>
+        <img src="https://www.countryflags.io/${sys.country}/shiny/64.png" alt="${sys.country}">
       <div class="temp-container">
         <div class="temp-icon-container">
           <img src="../img/thermometer.svg">
@@ -10893,6 +10899,8 @@ jQuery(document).ready(function($) {
     const init = () => {
       $('.three-hour').click(function() {
         let cardLarge = $('.card-large')
+        let allCards = $('.card-large')
+        allCards.removeClass('show-card-large')
         $(this)
         .find(cardLarge)
         .toggleClass('show-card-large')
