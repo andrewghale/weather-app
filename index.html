@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forecast</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./dist/css/app.css" />
   </head>
   <body>
@@ -18,30 +23,32 @@
           </label>
         </form>
       </div>
-      <div class="output-container" id="output">
-        <div class="title">
-          <div class="city">
-            <h1>Bristol, GB</h1>
-            <img src="https://www.countryflags.io/GB/shiny/64.png" alt="GB">
-          </div>
-          <div class="temp-container">
-            <p id="temp-color" class="cold">7&#176;C</p>
-          </div>
-          <p class="desc">Scattered clouds</p>
-          <div class="sun-container">
-            <div class="icon-container">
-              <img src="../img/dawn.svg">
+      <div class="dashboard">
+        <div class="output-container" id="output">
+          <div class="title">
+            <div class="city">
+              <h1>Bristol, GB</h1>
+              <img src="https://www.countryflags.io/GB/shiny/64.png" alt="GB">
             </div>
-            <div class="sun-time">
-              <p>06:52:49</p>
-              <p>GMT</p>
+            <div class="temp-container">
+              <p id="temp-color" class="cold">7&#176;C</p>
             </div>
-            <div class="icon-container">
-              <img src="../img/sunset.svg">
-            </div>
-            <div class="sun-time">
-              <p>17:52:58</p>
-              <p>GMT</p>
+            <p class="desc">Scattered clouds</p>
+            <div class="sun-container">
+              <div class="icon-container">
+                <img src="../img/dawn.svg">
+              </div>
+              <div class="sun-time">
+                <p>06:52:49</p>
+                <p>GMT</p>
+              </div>
+              <div class="icon-container">
+                <img src="../img/sunset.svg">
+              </div>
+              <div class="sun-time">
+                <p>17:52:58</p>
+                <p>GMT</p>
+              </div>
             </div>
           </div>
         </div>
@@ -325,25 +332,20 @@
         </li>
       </div>
     </div>
-    <script>
-      function initMap() {
-          let bristol = {lat: 51.46, lng: -2.6};
-          const map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 7,
-              center: bristol,
-              disableDefaultUI: true,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-          });
-          const marker = new google.maps.Marker({
-              position: bristol,
-              map: map,
-              title: 'abuja_location'
-          });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_hBW136GdqB4oxn7VcdyHUQ_tSAHXibE&callback=initMap"
-    async defer>
-    </script>
+
+
     <script src="./dist/js/app.js"></script>
+<!--
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiYWdoNDciLCJhIjoiY2s3YjEzMm93MTVtZzNnczRuNWR0NTlwMiJ9.0eKq69N2wsmdyJaImfSFgQ";
+      var map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+        center: [-2.6, 51.46], // starting position [lng, lat]
+        zoom: 8 // starting zoom
+      });
+    </script> -->
+
   </body>
 </html>

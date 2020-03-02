@@ -72,76 +72,91 @@
   display: none;
 }
 
-.output-container {
+.dashboard {
   display: flex;
-  background-color: white;
-  border-radius: 5px;
-  padding: 1rem;
-  margin: 0 1rem;
-  width: auto;
-  .title {
+  width: 100%;
+  .output-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0 1rem;
     width: 50%;
-    padding-left: 0.6rem;
-    .city {
+    .title {
       display: flex;
-      h1 {
-        font-size: 3.4rem;
-        margin-right: 0.6rem;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 0.6rem;
+      .city {
+        display: flex;
+        h1 {
+          font-size: 3.4rem;
+          margin-right: 0.6rem;
+        }
       }
-    }
-    .icon-container {
-      height: 50px;
-      width: 50px;
-      background: $icon-background;
-      border-radius: 50%;
-      margin-right: 0.6rem;
-      img {
-        height: 100%;
-        width: auto;
-      }
-    }
-    .temp-container {
-      display: flex;
-      p {
-        color: $white;
-        border-radius: 5px;
-        padding: 0 0.5rem;
-        font-size: 2.5rem;
-      }
-      .temp-icon-container {
+      .icon-container {
         height: 50px;
         width: 50px;
+        background: $icon-background;
+        border-radius: 50%;
         margin-right: 0.6rem;
         img {
           height: 100%;
           width: auto;
         }
       }
-    }
-  }
-  .desc {
-    font-size: 2rem;
-  }
-  .sun-container {
-    display: flex;
-    align-items: center;
-    .icon-container {
-      height: 50px;
-      width: 50px;
-      background: $icon-background;
-      border-radius: 50%;
-      margin-right: 0.6rem;
-      img {
-        width: auto;
-        height: 100%;
+      .temp-container {
+        display: flex;
+        p {
+          color: $white;
+          border-radius: 5px;
+          padding: 0 0.5rem;
+          font-size: 2.5rem;
+        }
+        .temp-icon-container {
+          height: 50px;
+          width: 50px;
+          margin-right: 0.6rem;
+          img {
+            height: 100%;
+            width: auto;
+          }
+        }
       }
     }
-    p {
-      margin-right: 2.5rem;
-      font-size: 1.8rem;
+    .desc {
+      font-size: 2rem;
+    }
+    .sun-container {
+      display: flex;
+      align-items: center;
+      .icon-container {
+        height: 50px;
+        width: 50px;
+        background: $icon-background;
+        border-radius: 50%;
+        margin-right: 0.6rem;
+        img {
+          width: auto;
+          height: 100%;
+        }
+      }
+      p {
+        margin-right: 2.5rem;
+        font-size: 1.8rem;
+      }
+    }
+  }
+  .map-container {
+    width: 50%;
+    border-radius: 5px;
+    margin-right: 1rem;
+    #map {
+      height: 300px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid grey;
     }
   }
 }
@@ -322,15 +337,4 @@
 }
 .sweltering {
   background-color: rgb(152, 75, 68);
-}
-
-.map-container {
-  width: 50%;
-  border-radius: 5px;
-  #map {
-    height: 300px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid grey;
-  }
 }

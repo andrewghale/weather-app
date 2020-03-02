@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
   const city = document.getElementById("cityInput")
   const searchInput = document.getElementById("searchInput")
-  const suggestions = document.querySelector(".suggestions")
+  // const suggestions = document.querySelector(".suggestions")
   const iconPath = "http://openweathermap.org/img/wn/"
 
   const getData = async (input) => {
@@ -32,6 +32,35 @@ jQuery(document).ready(function($) {
       .then( (data) => data.json())
       .then( (data) => generateForecastHtml(data) )
   }
+
+  // const getCoordinates = async (input) => {
+  //   const apiData = {
+  //     url: 'http://api.openweathermap.org/data/2.5/weather?q=',
+  //     city: `${input}`,
+  //     units: '&units=metric',
+  //     apiKey: '&appid=439e8e6881a90ec4a633579b93341e40'
+  //   }
+  //   const {url, city, units, apiKey} = apiData
+  //   const apiUrl = `${url}${city}${units}${apiKey}`
+  //   await fetch(apiUrl)
+  //     .then( (data) => data.json())
+  //     .then( (data) => console.log(data) )
+  // }
+
+  // function initMap(lat, lon) {
+  //   let city = {lat: lat, lng: lon};
+  //   const map = new google.maps.Map(document.getElementById('map'), {
+  //     zoom: 7,
+  //     center: city,
+  //     disableDefaultUI: true,
+  //     mapTypeId: google.maps.MapTypeId.ROADMAP
+  //   });
+  //   const marker = new google.maps.Marker({
+  //     position: city,
+  //     map: map,
+  //     title: 'bristol_location'
+  //   });
+  // }
 
   const capitalizeFirst = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -103,11 +132,22 @@ jQuery(document).ready(function($) {
   //   tempColor.style.color=`rgb(255, ${number*8}, 0)`;
   // }
 
+    // Mapbox
 
+  function initMapBox(lng, lat) {
+    mapboxgl.accessToken =
+    "pk.eyJ1IjoiYWdoNDciLCJhIjoiY2s3YjEzMm93MTVtZzNnczRuNWR0NTlwMiJ9.0eKq69N2wsmdyJaImfSFgQ";
+    var map = new mapboxgl.Map({
+      container: "map", // container id
+      style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+      center: [lng, lat], // starting position [lng, lat]
+      zoom: 8 // starting zoom
+    });
+  }
 
   const generateHtml = (data) => {
-    const { weather, main, sys, name, timezone } = data;
-    console.log(data)
+    const { coord, weather, main, sys, timezone, name } = data;
+    // console.log(data)
     const html = `
     <div class="title">
       <div class="city">
@@ -122,29 +162,26 @@ jQuery(document).ready(function($) {
       </div>
       <p class="desc">${capitalizeFirst(weather[0].description)}</p>
       <div class="sun-container">
-      <div class="icon-container">
-        <img src="../img/dawn.svg">
+        <div class="icon-container">
+          <img src="../img/dawn.svg">
+        </div>
+        <div class="sun-time">
+          <p>${epochToUtc(sys.sunrise + timezone)}</p>
+          <p>GMT${Math.sign(timezone) === 1 ? "+" : ""}${timezone/3600 === 0 ? "" : timezone/3600}</p>
+        </div>
+        <div class="icon-container">
+          <img src="../img/sunset.svg">
+        </div>
+        <div class="sun-time">
+          <p>${epochToUtc(sys.sunset + timezone)}</p>
+          <p>GMT${Math.sign(timezone) === 1 ? "+" : ""}${timezone/3600 === 0 ? "" : timezone/3600}</p>
+        </div>
       </div>
-      <div class="sun-time">
-        <p>${epochToUtc(sys.sunrise + timezone)}</p>
-        <p>GMT${Math.sign(timezone) === 1 ? "+" : ""}${timezone/3600 === 0 ? "" : timezone/3600}</p>
-      </div>
-      <div class="icon-container">
-        <img src="../img/sunset.svg">
-      </div>
-      <div class="sun-time">
-        <p>${epochToUtc(sys.sunset + timezone)}</p>
-        <p>GMT${Math.sign(timezone) === 1 ? "+" : ""}${timezone/3600 === 0 ? "" : timezone/3600}</p>
-      </div>
-    </div>
-    </div>
-    <div class="map-container">
-      <div id="map"></div>
     </div>
     `
     const outputDiv = document.getElementById('output')
     outputDiv.innerHTML = html
-    console.log(Math.round(main.temp))
+    initMapBox(coord.lon, coord.lat)
     init()
   }
 
@@ -228,7 +265,6 @@ jQuery(document).ready(function($) {
     //   }
     // }
 
-
     const init = () => {
       $('.three-hour').click(function() {
         let cardLarge = $('.card-large')
@@ -241,11 +277,6 @@ jQuery(document).ready(function($) {
     }
   init()
 
-
-
-
-
-
   //
   // Event Listeners
   //
@@ -254,7 +285,6 @@ jQuery(document).ready(function($) {
     getData(city.value)
     getForecastData(city.value)
     city.value = ''
-
   })
 
   // city.addEventListener('change', displayMatches)
